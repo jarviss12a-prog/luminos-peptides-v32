@@ -1,0 +1,14 @@
+<svg viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon outline -->
+  <path d="M35 4 L62 19 L62 51 L35 66 L8 51 L8 19 Z" stroke="#b8975a" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+  <!-- L lettermark -->
+  <line x1="22" y1="22" x2="22" y2="48" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/>
+  <line x1="22" y1="48" x2="42" y2="48" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/>
+  <!-- Node dots -->
+  <circle cx="22" cy="48" r="3.5" fill="#b8975a"/>
+  <circle cx="22" cy="22" r="2.2" fill="#b8975a" opacity="0.6"/>
+  <!-- Wordmark -->
+  <text x="80" y="46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="700" fill="#1a1a2e" letter-spacing="4">LUMINOS</text>
+  <!-- Subtext -->
+  <text x="82" y="62" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="300" fill="#9aa3af" letter-spacing="7">PEPTIDES</text>
+</svg>

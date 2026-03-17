@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luminos Peptides — Research-Grade Compounds | V3.2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off: #f8f9fa;
+      --surface: #f2f4f6;
+      --border: #e4e8ec;
+      --border2: #d0d6de;
+      --steel: #2a3340;
+      --steel2: #3d4e60;
+      --accent: #1a1a2e;
+      --gold: #b8975a;
+      --gold-light: #d4b07a;
+      --text: #1a1f2a;
+      --muted: #6b7685;
+      --muted2: #9aa3af;
+      --font-head: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --radius: 0.25rem;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--text); font-weight: 300; }
+
+    /* RESEARCH BAR */
+    .research-bar {
+      background: var(--accent); color: rgba(255,255,255,0.7);
+      text-align: center; padding: 0.55rem 1rem;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: var(--font-body); font-weight: 400;
+    }
+    .research-bar strong { color: var(--gold-light); font-weight: 500; }
+
+    /* NAV */
+    nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 68px;
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-logo svg { height: 28px; width: 28px; flex-shrink: 0; }
+    .nav-logo-wordmark { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; }
+    .nav-logo-sub { font-family: var(--font-body); font-size: 0.6rem; font-weight: 400; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; margin-top: 1px; }
+    .nav-center { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-center a { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 150ms; }
+    .nav-center a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-disclaimer { font-size: 0.7rem; color: var(--muted2); letter-spacing: 0.08em; text-transform: uppercase; border-left: 1px solid var(--border2); padding-left: 1.25rem; }
+    .nav-btn {
+      background: var(--accent); color: white;
+      padding: 0.6rem 1.75rem; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border-radius: var(--radius);
+      transition: background 150ms;
+    }
+    .nav-btn:hover { background: var(--steel); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: var(--white);
+    }
+    .hero-line-h, .hero-line-v {
+      position: absolute; background: var(--border);
+      pointer-events: none;
+    }
+    .hero-line-h { width: 100%; height: 1px; top: 50%; }
+    .hero-line-v { height: 100%; width: 1px; left: 50%; }
+    .hero-circle {
+      position: absolute; right: -200px; top: 50%; transform: translateY(-50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .hero-circle2 {
+      position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1280px; margin: 0 auto; padding: 6rem 2rem;
+      position: relative; z-index: 1; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+    .hero h1 {
+      font-family: var(--font-head); font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 600; line-height: 1.08; letter-spacing: -0.01em;
+      color: var(--accent); margin-bottom: 1.75rem;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.85;
+      max-width: 440px; margin-bottom: 3rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-dark {
+      background: var(--accent); color: white;
+      padding: 1rem 2.5rem; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+      border-radius: var(--radius); transition: background 150ms;
+    }
+    .btn-dark:hover { background: var(--steel); }
+    .btn-outline-dark {
+      background: transparent; color: var(--accent);
+      border: 1px solid var(--border2);
+      padding: 1rem 2.5rem; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+      border-radius: var(--radius); transition: border-color 150ms, background 150ms;
+    }
+    .btn-outline-dark:hover { border-color: var(--accent); background: var(--off); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .stat-val { font-family: var(--font-head); font-size: 2.2rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; }
+    .stat-label { font-size: 0.72rem; color: var(--muted2); margin-top: 0.25rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; }
+    .hero-right { position: relative; }
+    .hero-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 0.5rem; filter: grayscale(20%); }
+    .hero-img-caption {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .caption-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; font-weight: 400; }
+    .caption-val { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+    .caption-badge { background: var(--accent); color: white; font-size: 0.68rem; font-weight: 500; padding: 0.35rem 0.75rem; border-radius: var(--radius); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--off); padding: 0.85rem 0; }
+    .marquee-track { display: flex; gap: 0; animation: marquee 30s linear infinite; white-space: nowrap; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted2); padding: 0 2.5rem; border-right: 1px solid var(--border2); display: flex; align-items: center; gap: 0.5rem; }
+    .marquee-item i { color: var(--gold); }
+
+    /* COMPOUNDS */
+    .compounds { padding: 7rem 2rem; }
+    .compounds-inner { max-width: 1280px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+    .section-title { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 600; letter-spacing: -0.01em; color: var(--accent); margin-bottom: 1rem; }
+    .section-sub { font-size: 0.92rem; font-weight: 300; color: var(--muted); line-height: 1.85; max-width: 500px; margin-bottom: 4rem; }
+    .compound-table { width: 100%; border-collapse: collapse; }
+    .compound-table thead tr { border-bottom: 2px solid var(--accent); }
+    .compound-table th { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 0 1rem 1rem; text-align: left; }
+    .compound-table th:last-child { text-align: right; }
+    .compound-table tbody tr { border-bottom: 1px solid var(--border); transition: background 150ms; cursor: pointer; }
+    .compound-table tbody tr:hover { background: var(--off); }
+    .compound-table td { padding: 1.25rem 1rem; font-size: 0.9rem; vertical-align: middle; }
+    .td-name { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+    .td-sub { font-size: 0.72rem; color: var(--muted2); margin-top: 0.15rem; letter-spacing: 0.04em; }
+    .td-cat { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface); color: var(--muted); padding: 0.25rem 0.6rem; border-radius: var(--radius); display: inline-block; }
+    .td-purity { font-size: 0.9rem; font-weight: 500; color: var(--steel); }
+    .td-purity-bar { width: 80px; height: 3px; background: var(--border); border-radius: 2px; margin-top: 0.35rem; overflow: hidden; }
+    .td-purity-fill { height: 100%; background: var(--gold); border-radius: 2px; }
+    .td-price { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+    .td-price sub { font-size: 0.7rem; color: var(--muted); font-family: var(--font-body); font-weight: 300; }
+    .td-cta { text-align: right; }
+    .td-btn { background: transparent; border: 1px solid var(--border2); color: var(--accent); padding: 0.5rem 1.25rem; border-radius: var(--radius); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 150ms; }
+    .td-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+    .td-tag-new { background: rgba(184,151,90,0.12); color: var(--gold); font-size: 0.62rem; font-weight: 600; padding: 0.15rem 0.4rem; border-radius: 0.15rem; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 0.5rem; }
+
+    /* QUALITY */
+    .quality-section { background: var(--accent); padding: 7rem 2rem; }
+    .quality-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .quality-section .section-eyebrow { color: rgba(184,151,90,0.8); }
+    .quality-section .section-eyebrow::before { background: var(--gold); }
+    .quality-section .section-title { color: white; }
+    .quality-section .section-sub { color: rgba(255,255,255,0.5); max-width: none; }
+    .q-list { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; }
+    .q-item { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .q-item:last-child { border-bottom: none; }
+    .q-number { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: rgba(184,151,90,0.3); line-height: 1; min-width: 40px; }
+    .q-title { font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: white; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+    .q-desc { font-size: 0.83rem; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.7; }
+    .spec-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; overflow: hidden; }
+    .spec-top { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .spec-name { font-family: var(--font-head); font-size: 1.4rem; font-weight: 600; color: white; }
+    .spec-badge { background: var(--gold); color: var(--accent); font-size: 0.7rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: var(--radius); letter-spacing: 0.08em; text-transform: uppercase; }
+    .spec-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key { font-size: 0.75rem; font-weight: 400; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; text-transform: uppercase; }
+    .spec-val { font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+    .spec-val.pass { color: var(--gold-light); }
+
+    /* FEATURED PRODUCTS — vial showcase */
+    .featured-section { padding: 7rem 2rem; background: var(--white); }
+    .featured-inner { max-width: 1280px; margin: 0 auto; }
+    .featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-top: 4rem; }
+
+    .prod-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: border-color 200ms, box-shadow 200ms, transform 200ms;
+      cursor: pointer;
+    }
+    .prod-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+
+    /* Vial photo container */
+    .prod-vial-wrap {
+      position: relative;
+      background: #f6f7f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem 0;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .prod-vial-img {
+      height: 220px;
+      width: auto;
+      object-fit: contain;
+      object-position: center bottom;
+      display: block;
+      filter: brightness(1.02) contrast(1.02);
+    }
+
+    /* Label overlaid on vial */
+    .prod-vial-label {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 2px;
+      padding: 7px 8px 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+      z-index: 5;
+    }
+
+    .label-brand {
+      font-family: var(--font-head);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .label-brand-dot {
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .label-divider { height: 1px; background: var(--border2); margin: 4px 0; }
+    .label-compound {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .label-dose {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .label-research {
+      font-size: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted2);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .label-gold-bar {
+      background: var(--gold);
+      height: 2px;
+      border-radius: 1px;
+      margin-bottom: 3px;
+    }
+    .label-purity {
+      font-size: 7px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Card body below vial */
+    .prod-card-body { padding: 1.25rem 1.25rem 1.5rem; }
+    .prod-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; }
+    .prod-desc { font-size: 0.75rem; color: var(--muted2); font-weight: 300; line-height: 1.6; margin-bottom: 1rem; }
+    .prod-footer { display: flex; justify-content: space-between; align-items: center; }
+    .prod-price { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; color: var(--text); }
+    .prod-price sub { font-size: 0.65rem; font-weight: 400; color: var(--muted2); font-family: var(--font-body); }
+    .prod-btn { background: var(--accent); color: white; border: none; padding: 0.55rem 1rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border-radius: var(--radius); cursor: pointer; transition: background 200ms; font-family: var(--font-body); }
+    .prod-btn:hover { background: var(--gold); color: var(--accent); }
+
+    /* CATEGORIES */
+    .categories-section { padding: 7rem 2rem; background: var(--off); }
+    .categories-inner { max-width: 1280px; margin: 0 auto; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
+    .cat-card { background: var(--white); border: 1px solid var(--border); border-radius: 0.5rem; padding: 2rem; text-decoration: none; color: var(--text); transition: border-color 200ms, box-shadow 200ms, transform 200ms; display: flex; flex-direction: column; gap: 1rem; }
+    .cat-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+    .cat-icon-wrap { width: 44px; height: 44px; background: rgba(184,151,90,0.08); border-radius: 0.35rem; display: flex; align-items: center; justify-content: center; color: var(--gold); }
+    .cat-name { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; color: var(--accent); }
+    .cat-count { font-size: 0.72rem; color: var(--muted2); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--surface); border-top: 1px solid var(--border); padding: 2.5rem 2rem; }
+    .disclaimer-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    .disc-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border2); padding: 0.25rem 0.6rem; border-radius: var(--radius); white-space: nowrap; margin-top: 0.1rem; }
+    .disc-text { font-size: 0.78rem; font-weight: 300; color: var(--muted2); line-height: 1.75; flex: 1; }
+
+    /* FOOTER */
+    footer { background: var(--accent); padding: 4rem 2rem 2rem; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .f-logo { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; color: white; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .f-logo span { color: var(--gold); }
+    .f-desc { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    .f-col h4 { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
+    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .f-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.85rem; font-weight: 300; transition: color 150ms; }
+    .f-col a:hover { color: var(--gold-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.75rem; display: flex; justify-content: space-between; font-size: 0.72rem; color: rgba(255,255,255,0.25); font-weight: 300; letter-spacing: 0.04em; flex-wrap: wrap; gap: 0.5rem; }
+
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .quality-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-center, .nav-disclaimer { display: none; }
+      .hamburger { display: block; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; }
+      .compound-table thead { display: none; }
+      .compound-table td { display: block; padding: 0.5rem 0; }
+      .compound-table tr { display: block; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="research-bar">For Laboratory & Scientific Research Use Only &nbsp;|&nbsp; <strong>Use LUMINOS10 for 10% off your first order</strong></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <!-- Hexagon + L lettermark matching brand identity -->
+      <svg viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hexagon outline -->
+        <path d="M20 2 L37 11.5 L37 34.5 L20 44 L3 34.5 L3 11.5 Z" stroke="#b8975a" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <!-- L lettermark: vertical stroke -->
+        <line x1="13" y1="13" x2="13" y2="30" stroke="#1a1a2e" stroke-width="2.8" stroke-linecap="round"/>
+        <!-- L lettermark: horizontal stroke -->
+        <line x1="13" y1="30" x2="25" y2="30" stroke="#1a1a2e" stroke-width="2.8" stroke-linecap="round"/>
+        <!-- Node dot at L corner -->
+        <circle cx="13" cy="30" r="2.2" fill="#b8975a"/>
+        <!-- Small node at top of L -->
+        <circle cx="13" cy="13" r="1.5" fill="#b8975a" opacity="0.6"/>
+      </svg>
+      <div class="nav-logo-wordmark">
+        <span class="nav-logo-main">LUMINOS</span>
+        <span class="nav-logo-sub">Peptides</span>
+      </div>
+    </a>
+    <ul class="nav-center">
+      <li><a href="#compounds">Catalog</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#quality">Lab Reports</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-disclaimer">Research Use Only</span>
+      <a href="#compounds" class="nav-btn">Shop Now</a>
+    </div>
+    <button class="hamburger"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-line-h"></div>
+  <div class="hero-line-v"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-circle2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Research Grade Peptides</div>
+      <h1>The Standard<br />in <em>Precision</em><br />Research<br />Compounds.</h1>
+      <p class="hero-sub">Every product manufactured in GMP-compliant US facilities. Third-party HPLC tested. A lot-specific Certificate of Analysis included with every order.</p>
+      <div class="hero-btns">
+        <a href="#compounds" class="btn-dark">Browse Catalog</a>
+        <a href="#quality" class="btn-outline-dark">View Lab Reports</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-val">99.4%</div><div class="stat-label">Avg. Purity</div></div>
+        <div><div class="stat-val">48h</div><div class="stat-label">Fulfillment</div></div>
+        <div><div class="stat-val">72+</div><div class="stat-label">Compounds</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=800&fit=crop&auto=format" alt="Research laboratory" />
+      <div class="hero-img-caption">
+        <div>
+          <div class="caption-label">Current Best Seller</div>
+          <div class="caption-val">BPC-157 — 99.6% Pure</div>
+        </div>
+        <div class="caption-badge">COA Verified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 99%+ Purity Guaranteed</span>
+    <span class="marquee-item"><i data-lucide="flask-conical" style="width:12px;height:12px;"></i> Third-Party HPLC Tested</span>
+    <span class="marquee-item"><i data-lucide="shield" style="width:12px;height:12px;"></i> GMP Compliant Facilities</span>
+    <span class="marquee-item"><i data-lucide="file-text" style="width:12px;height:12px;"></i> COA on Every Order</span>
+    <span class="marquee-item"><i data-lucide="zap" style="width:12px;height:12px;"></i> 48h Order Fulfillment</span>
+    <span class="marquee-item"><i data-lucide="map-pin" style="width:12px;height:12px;"></i> US Manufactured</span>
+    <span class="marquee-item"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 99%+ Purity Guaranteed</span>
+    <span class="marquee-item"><i data-lucide="flask-conical" style="width:12px;height:12px;"></i> Third-Party HPLC Tested</span>
+    <span class="marquee-item"><i data-lucide="shield" style="width:12px;height:12px;"></i> GMP Compliant Facilities</span>
+    <span class="marquee-item"><i data-lucide="file-text" style="width:12px;height:12px;"></i> COA on Every Order</span>
+    <span class="marquee-item"><i data-lucide="zap" style="width:12px;height:12px;"></i> 48h Order Fulfillment</span>
+    <span class="marquee-item"><i data-lucide="map-pin" style="width:12px;height:12px;"></i> US Manufactured</span>
+  </div>
+</div>
+
+<section class="featured-section" id="featured">
+  <div class="featured-inner">
+    <div class="section-eyebrow">Featured Products</div>
+    <div class="section-title">Bestselling Compounds</div>
+    <p class="section-sub">Third-party HPLC tested. GMP-manufactured. Full COA on every order. For research use only.</p>
+    <div class="featured-grid">
+
+      <!-- BPC-157 -->
+      <div class="prod-card">
+        <div class="prod-vial-wrap">
+          <img class="prod-vial-img" src="vial-base.jpg" alt="Luminos BPC-157 vial">
+          <div class="prod-vial-label">
+            <div class="label-brand"><div class="label-brand-dot"></div>LUMINOS</div>
+            <div class="label-divider"></div>
+            <div class="label-compound">BPC-157</div>
+            <div class="label-dose">5mg</div>
+            <div class="label-gold-bar"></div>
+            <div class="label-research">Research Use Only<br>Purity ≥ 99%</div>
+            <div class="label-purity">≥ 99.6%</div>
+          </div>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-name">BPC-157</div>
+          <div class="prod-desc">Body Protection Compound — 15 AA. Recovery & tissue repair research.</div>
+          <div class="prod-footer">
+            <div class="prod-price">$54.99 <sub>/ 5mg</sub></div>
+            <button class="prod-btn">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Semaglutide -->
+      <div class="prod-card">
+        <div class="prod-vial-wrap">
+          <img class="prod-vial-img" src="vial-base.jpg" alt="Luminos Semaglutide vial">
+          <div class="prod-vial-label">
+            <div class="label-brand"><div class="label-brand-dot"></div>LUMINOS</div>
+            <div class="label-divider"></div>
+            <div class="label-compound">Sema-<br>glutide</div>
+            <div class="label-dose">2mg</div>
+            <div class="label-gold-bar"></div>
+            <div class="label-research">Research Use Only<br>Purity ≥ 99%</div>
+            <div class="label-purity">≥ 99.3%</div>
+          </div>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-name">Semaglutide</div>
+          <div class="prod-desc">GLP-1 Receptor Agonist — 31 AA. Metabolic & weight research.</div>
+          <div class="prod-footer">
+            <div class="prod-price">$79.99 <sub>/ 2mg</sub></div>
+            <button class="prod-btn">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TB-500 -->
+      <div class="prod-card">
+        <div class="prod-vial-wrap">
+          <img class="prod-vial-img" src="vial-base.jpg" alt="Luminos TB-500 vial">
+          <div class="prod-vial-label">
+            <div class="label-brand"><div class="label-brand-dot"></div>LUMINOS</div>
+            <div class="label-divider"></div>
+            <div class="label-compound">TB-500</div>
+            <div class="label-dose">5mg</div>
+            <div class="label-gold-bar"></div>
+            <div class="label-research">Research Use Only<br>Purity ≥ 99%</div>
+            <div class="label-purity">≥ 99.1%</div>
+          </div>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-name">TB-500</div>
+          <div class="prod-desc">Thymosin Beta-4 Synthetic — 43 AA. Recovery & inflammation research.</div>
+          <div class="prod-footer">
+            <div class="prod-price">$59.99 <sub>/ 5mg</sub></div>
+            <button class="prod-btn">Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tirzepatide -->
+      <div class="prod-card">
+        <div class="prod-vial-wrap">
+          <img class="prod-vial-img" src="vial-base.jpg" alt="Luminos Tirzepatide vial">
+          <div class="prod-vial-label">
+            <div class="label-brand"><div class="label-brand-dot"></div>LUMINOS</div>
+            <div class="label-divider"></div>
+            <div class="label-compound">Tirze-<br>patide</div>
+            <div class="label-dose">5mg</div>
+            <div class="label-gold-bar"></div>
+            <div class="label-research">Research Use Only<br>Purity ≥ 99%</div>
+            <div class="label-purity">≥ 98.9%</div>
+          </div>
+        </div>
+        <div class="prod-card-body">
+          <div class="prod-name">Tirzepatide</div>
+          <div class="prod-desc">GIP/GLP-1 Dual Agonist — 39 AA. Metabolic & weight research.</div>
+          <div class="prod-footer">
+            <div class="prod-price">$89.99 <sub>/ 5mg</sub></div>
+            <button class="prod-btn">Order</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="compounds" id="compounds">
+  <div class="compounds-inner">
+    <div class="section-eyebrow">Our Catalog</div>
+    <div class="section-title">Research Compounds</div>
+    <p class="section-sub">All products sold strictly for research and laboratory use. Third-party tested. Full COA documentation on every order.</p>
+    <table class="compound-table">
+      <thead>
+        <tr>
+          <th>Compound</th>
+          <th>Category</th>
+          <th>Purity</th>
+          <th>MW</th>
+          <th style="text-align:right">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="td-name">BPC-157 <span class="td-tag-new">Hot</span></div><div class="td-sub">Body Protection Compound — 15 AA</div></td>
+          <td><span class="td-cat">Recovery</span></td>
+          <td><div class="td-purity">99.6%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99.6%"></div></div></td>
+          <td>1419.5</td>
+          <td class="td-cta" style="text-align:right"><div class="td-price">$54.99 <sub>/ 5mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">TB-500</div><div class="td-sub">Thymosin Beta-4 Synthetic — 43 AA</div></td>
+          <td><span class="td-cat">Recovery</span></td>
+          <td><div class="td-purity">99.1%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99.1%"></div></div></td>
+          <td>4963.5</td>
+          <td style="text-align:right"><div class="td-price">$59.99 <sub>/ 5mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">Semaglutide <span class="td-tag-new">Hot</span></div><div class="td-sub">GLP-1 Receptor Agonist — 31 AA</div></td>
+          <td><span class="td-cat">Metabolic</span></td>
+          <td><div class="td-purity">99.3%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99.3%"></div></div></td>
+          <td>4113.6</td>
+          <td style="text-align:right"><div class="td-price">$79.99 <sub>/ 2mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">Tirzepatide <span class="td-tag-new">New</span></div><div class="td-sub">GIP/GLP-1 Dual Agonist — 39 AA</div></td>
+          <td><span class="td-cat">Metabolic</span></td>
+          <td><div class="td-purity">98.9%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:98.9%"></div></div></td>
+          <td>4813.5</td>
+          <td style="text-align:right"><div class="td-price">$89.99 <sub>/ 5mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">Ipamorelin / CJC-1295</div><div class="td-sub">GHRP + GHRH Analog Blend</div></td>
+          <td><span class="td-cat">Performance</span></td>
+          <td><div class="td-purity">99.5%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99.5%"></div></div></td>
+          <td>3147.8</td>
+          <td style="text-align:right"><div class="td-price">$69.99 <sub>/ 5mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">Epithalon</div><div class="td-sub">Ala-Glu-Asp-Gly Tetrapeptide — 4 AA</div></td>
+          <td><span class="td-cat">Longevity</span></td>
+          <td><div class="td-purity">99.7%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99.7%"></div></div></td>
+          <td>390.35</td>
+          <td style="text-align:right"><div class="td-price">$44.99 <sub>/ 10mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">Selank</div><div class="td-sub">Anxiolytic Heptapeptide — 7 AA</div></td>
+          <td><span class="td-cat">Cognitive</span></td>
+          <td><div class="td-purity">99.2%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99.2%"></div></div></td>
+          <td>751.86</td>
+          <td style="text-align:right"><div class="td-price">$49.99 <sub>/ 5mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+        <tr>
+          <td><div class="td-name">PT-141</div><div class="td-sub">Bremelanotide — 7 AA</div></td>
+          <td><span class="td-cat">Sexual Health</span></td>
+          <td><div class="td-purity">99.0%</div><div class="td-purity-bar"><div class="td-purity-fill" style="width:99%"></div></div></td>
+          <td>1025.2</td>
+          <td style="text-align:right"><div class="td-price">$64.99 <sub>/ 10mg</sub></div></td>
+          <td class="td-cta"><a href="#" class="td-btn">Add to Cart</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="quality-section" id="quality">
+  <div class="quality-inner">
+    <div>
+      <div class="section-eyebrow" style="color:rgba(184,151,90,0.8);">Quality & Transparency</div>
+      <div class="section-title" style="color:white;">Quality You Can Verify</div>
+      <p class="section-sub" style="color:rgba(255,255,255,0.45);">We don't ask you to take our word for it. Every claim is backed by documentation from independent third-party laboratories.</p>
+      <div class="q-list">
+        <div class="q-item"><div class="q-number">01</div><div><div class="q-title">Third-Party HPLC Testing</div><div class="q-desc">Every batch tested at a certified independent US laboratory. No in-house testing only — ever.</div></div></div>
+        <div class="q-item"><div class="q-number">02</div><div><div class="q-title">GMP-Compliant Manufacturing</div><div class="q-desc">Produced in US facilities adhering to Good Manufacturing Practices, every batch.</div></div></div>
+        <div class="q-item"><div class="q-number">03</div><div><div class="q-title">Lot-Specific COA</div><div class="q-desc">Every order ships with a full, lot-traceable Certificate of Analysis. Purity, MW, identity — all confirmed.</div></div></div>
+        <div class="q-item"><div class="q-number">04</div><div><div class="q-title">Fast, Discreet Shipping</div><div class="q-desc">Orders ship within 48 hours. Plain unmarked packaging. Cold-pack available on request.</div></div></div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-top"><span class="spec-name">BPC-157</span><span class="spec-badge">COA Verified</span></div>
+      <div class="spec-row"><span class="spec-key">Lot Number</span><span class="spec-val">#L2025-0342</span></div>
+      <div class="spec-row"><span class="spec-key">CAS Number</span><span class="spec-val">137525-51-0</span></div>
+      <div class="spec-row"><span class="spec-key">Molecular Formula</span><span class="spec-val">C₆₂H₉₈N₁₆O₂₂</span></div>
+      <div class="spec-row"><span class="spec-key">HPLC Purity</span><span class="spec-val pass">99.6% — PASS</span></div>
+      <div class="spec-row"><span class="spec-key">MS Identity</span><span class="spec-val pass">Confirmed — PASS</span></div>
+      <div class="spec-row"><span class="spec-key">Endotoxin</span><span class="spec-val pass">&lt;1 EU/mg — PASS</span></div>
+      <div class="spec-row"><span class="spec-key">Sterility</span><span class="spec-val pass">No Growth — PASS</span></div>
+      <div class="spec-row"><span class="spec-key">Testing Laboratory</span><span class="spec-val">Intertek Laboratories</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="categories-section" id="categories">
+  <div class="categories-inner">
+    <div class="section-eyebrow">Research Navigator</div>
+    <div class="section-title">Find Your Compound</div>
+    <p class="section-sub">Browse by research area to find the compounds relevant to your work.</p>
+    <div class="cat-grid">
+      <a class="cat-card" href="#"><div class="cat-icon-wrap"><i data-lucide="activity" style="width:18px;height:18px;"></i></div><div class="cat-name">Recovery & Repair</div><div class="cat-count">12 Compounds</div></a>
+      <a class="cat-card" href="#"><div class="cat-icon-wrap"><i data-lucide="flame" style="width:18px;height:18px;"></i></div><div class="cat-name">Metabolic & Weight</div><div class="cat-count">8 Compounds</div></a>
+      <a class="cat-card" href="#"><div class="cat-icon-wrap"><i data-lucide="brain" style="width:18px;height:18px;"></i></div><div class="cat-name">Cognitive & Focus</div><div class="cat-count">9 Compounds</div></a>
+      <a class="cat-card" href="#"><div class="cat-icon-wrap"><i data-lucide="clock" style="width:18px;height:18px;"></i></div><div class="cat-name">Longevity & Anti-Aging</div><div class="cat-count">11 Compounds</div></a>
+      <a class="cat-card" href="#"><div class="cat-icon-wrap"><i data-lucide="trending-up" style="width:18px;height:18px;"></i></div><div class="cat-name">Performance & Growth</div><div class="cat-count">14 Compounds</div></a>
+      <a class="cat-card" href="#"><div class="cat-icon-wrap"><i data-lucide="heart" style="width:18px;height:18px;"></i></div><div class="cat-name">Sexual Health</div><div class="cat-count">6 Compounds</div></a>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <span class="disc-label">Research Use Only</span>
+    <p class="disc-text">All products sold by Luminos Peptides are intended for laboratory and research purposes only. These compounds are not approved by the FDA and are not intended for human consumption, medical diagnosis, or therapeutic use. By purchasing, you confirm you are a qualified professional. All information is provided for professional and scientific reference only.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo" style="display:flex;align-items:center;gap:9px;">
+          <svg viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;width:auto;flex-shrink:0;">
+            <path d="M20 2 L37 11.5 L37 34.5 L20 44 L3 34.5 L3 11.5 Z" stroke="#b8975a" stroke-width="2" fill="none" stroke-linejoin="round"/>
+            <line x1="13" y1="13" x2="13" y2="30" stroke="rgba(255,255,255,0.85)" stroke-width="2.8" stroke-linecap="round"/>
+            <line x1="13" y1="30" x2="25" y2="30" stroke="rgba(255,255,255,0.85)" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="13" cy="30" r="2.2" fill="#b8975a"/>
+            <circle cx="13" cy="13" r="1.5" fill="#b8975a" opacity="0.6"/>
+          </svg>
+          <div style="line-height:1;">
+            <div style="font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:white;letter-spacing:0.12em;">LUMINOS</div>
+            <div style="font-family:var(--font-body);font-size:0.58rem;font-weight:400;color:#b8975a;letter-spacing:0.25em;text-transform:uppercase;margin-top:2px;">Peptides</div>
+          </div>
+        </div>
+        <p class="f-desc">Research-grade peptides for the scientific community. Third-party tested, GMP-manufactured, lot-tracked. Every order includes a full Certificate of Analysis.</p>
+      </div>
+      <div class="f-col"><h4>Products</h4><ul><li><a href="#">Recovery</a></li><li><a href="#">Metabolic</a></li><li><a href="#">Cognitive</a></li><li><a href="#">Longevity</a></li><li><a href="#">All Products</a></li></ul></div>
+      <div class="f-col"><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Lab Reports</a></li><li><a href="#">COA Library</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div class="f-col"><h4>Legal</h4><ul><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Research Disclaimer</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Luminos Peptides. All rights reserved.</span>
+      <span>For research and laboratory use only. Not for human consumption.</span>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style>
+  /* === SCROLL ANIMATIONS === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+  /* Stagger delay helpers */
+  .delay-1 { transition-delay: 0.1s !important; }
+  .delay-2 { transition-delay: 0.2s !important; }
+  .delay-3 { transition-delay: 0.3s !important; }
+  .delay-4 { transition-delay: 0.4s !important; }
+  .delay-5 { transition-delay: 0.5s !important; }
+</style>
+
+<script>
+(function() {
+  // Add reveal classes to elements
+  const selectors = [
+    { sel: '.section-eyebrow', cls: 'reveal' },
+    { sel: '.section-title', cls: 'reveal', delay: 1 },
+    { sel: '.section-sub', cls: 'reveal', delay: 2 },
+    { sel: '.prod-card', cls: 'reveal-scale' },
+    { sel: '.hero-img', cls: 'reveal-right' },
+    { sel: '.hero-content', cls: 'reveal-left' },
+    { sel: '.trust-bar > *', cls: 'reveal' },
+    { sel: '.cat-card', cls: 'reveal-scale' },
+    { sel: '.q-item', cls: 'reveal-left' },
+    { sel: '.spec-card', cls: 'reveal-right' },
+    { sel: '.compound-table', cls: 'reveal' },
+  ];
+
+  selectors.forEach(({ sel, cls }) => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      el.classList.add(cls);
+      // Stagger siblings
+      if (i > 0 && i <= 5) el.classList.add(`delay-${Math.min(i, 5)}`);
+    });
+  });
+
+  // Intersection Observer
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+    obs.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
